@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class OrderConsumer {
+public class QueueConsumer {
 
-    @RabbitListener(queues = {"${queue.order.name}"})
+    @RabbitListener(queues = {"${queue.name}"})
     public void receive(@Payload String fileBody) {
         System.out.println("Order" + fileBody);
     }

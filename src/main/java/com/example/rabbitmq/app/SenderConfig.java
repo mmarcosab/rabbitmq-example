@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SenderConfig {
 
-    @Value("${queue.order.name}")
-    private String orderQueue;
+    @Value("${queue.name}")
+    private String message;
 
     @Bean
     public Queue queue() {
-        return new Queue(orderQueue, true);
+        return new Queue(message, true);
     }
 
 }
