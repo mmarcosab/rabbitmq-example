@@ -1,5 +1,6 @@
 package com.example.rabbitmq.app;
 
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,11 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TesteController {
 
     @Autowired
-    private QueueSender queueSender;
+    private AmqpTemplate queueSender;
 
     @GetMapping
     public String send(){
-        queueSender.send("test message");
+
+        queueSender.convertAndSend("teste-exchange", "routing-key-teste", "test message");
         return "ok. done";
     }
 
